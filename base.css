@@ -1,0 +1,16 @@
+h1, h2{
+	color:blue;
+	text-align:center;
+}
+td{
+	text-align:center;
+}
+table {
+	background:lightgray;
+	width:100%;
+	border-style:double;
+}
+thead{
+	color:white;
+	height:"10px";
+}

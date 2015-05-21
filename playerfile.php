@@ -1,10 +1,10 @@
 <html>
-<head>
-<style type="text/css">
-h1, h2{
-color:blue;
-text-align:center;
-}
+	<head>
+	<style type="text/css">
+		h1, h2{
+		color:blue;
+		text-align:center;
+	}
 td{
 text-align:center;
 }

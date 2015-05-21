@@ -17,21 +17,30 @@ class Player {
 	public function __construct($firstname, $lastname){
 		$this->firstname = $firstname;
 		$this->lastname = $lastname;
+		$this->age = $age;
+		$this->team = $team;
+		$this->games = $games;
+		$this->minutes = $minutes;
+		$this->ORB_pct = $ORB_pct;
+		$this->DRB_pct = $DRB_pct;
+		$this->TRB_pct = $TRB_pct;
+		$this->AST_pct = $AST_pct;
+		$this->STL_pct = $STL_pct;
+		$this->BLK_pct = $BLK_pct;
+		$this->TOV_pct = $TOV_pct;
+		
 
 	} 
 	
-	public function hello(){
-	return  $this->firstname . " " . $this->lastname ;
 
-	}
+	public function __set($key, $value) {
+                $this->$key = $value;
+        }
 
-	public function __get($property_name) {
-		return $this->$property_name;
-	}
+        public function __get($key) {
+                return $this->$key;
+        }
 
-	public function __set($property_name, $value) {
-		$this->$property_name = $value;
-	}
 }
 
 
