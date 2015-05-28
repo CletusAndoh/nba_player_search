@@ -14,3 +14,7 @@ thead{
 	color:white;
 	height:"10px";
 }
+a:hover{
+text-decoration:underline;
+
+}

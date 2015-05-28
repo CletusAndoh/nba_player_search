@@ -6,7 +6,7 @@ include 'Team.php';
 ?>
 	<body>
 		<h1>
-			<?php echo 'Team Name ' .$_GET['term'] . "<br>";
+			<?php
 			echo "Statistics for " .$_GET['term'];
 			?></h1>
 	<?php
@@ -24,16 +24,12 @@ include 'Team.php';
                     }
 		foreach($rows as $row){
 			$team = new Team();
-			var_dump($row);
 			foreach ($row as $key => $value) {
 				$team->$key = $value;
 
 			}
 		}
 		
-		//var_dump($team);
-
-			echo $team->name;
                 ?>
 <div>
 <center>

@@ -7,8 +7,7 @@ include 'Player.php';
 
 	<body>
 		<h1>
-		<?php echo 'Player Name ' .$_GET["term"] . "<br>";
-		echo "Statistics for " .$_GET["term"];?>
+		<?php echo "Statistics for " .$_GET["term"];?>
 		</h1>
 
 
