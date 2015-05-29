@@ -1,4 +1,5 @@
 <?php
+require_once 'Db.php';
 class Team {
         protected $name;
         protected $startyear;
@@ -36,6 +37,25 @@ class Team {
 	public function __get($key) {
 		return $this->$key;
 	}
+
+	public static function findAll($term) {
+		$con = new Db();
+		$dbh2 = $con->getPDO();
+		$term = $_GET['term'];
+		$sql2 = $dbh2->prepare("select name from teams where name like '%$term%'");
+		$sql2->execute(array($term));
+		$rows2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
+		$teamarr = array();	
+		foreach($rows2 as $row2) {
+		       $team = new Team();
+		       foreach ($row2 as $key2 => $value2) {
+					$team->$key2 = $value2;
+		       }
+		$teamarr[] = $team;
+		}
+	return $teamarr;
+	}
+
 }
 
 

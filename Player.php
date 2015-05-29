@@ -1,4 +1,5 @@
 <?php
+require_once 'Db.php';
 class Player {
 	protected $firstname;
 	protected $lastname;
@@ -14,7 +15,7 @@ class Player {
 	protected $BLK_pct;//Blocks
 	protected $TOV_pct;//Turnovers
 
-	public function __construct($firstname, $lastname){
+	public function __construct($firstname, $lastname, $age, $team, $minutes ,$ORB_pct, $DRB_pct, $TRB_pct, $AST_pct, $STL_pct, $BLK_pct, $TOV_pct){
 		$this->firstname = $firstname;
 		$this->lastname = $lastname;
 		$this->age = $age;
@@ -41,6 +42,24 @@ class Player {
                 return $this->$key;
         }
 
+	public static function findAll() {
+	$con = new Db();
+	$dbh =  $con->getPDO2();
+	$term = $_GET['term'];
+	$sql = $dbh->prepare("select name,id from players where name like '%$term%'");
+        $sql->execute(array($term));
+        $rows = $sql->fetchAll(PDO::FETCH_ASSOC);	
+	$playerarr = array();
+	foreach($rows as $row) {
+               $player = new Player();
+		foreach ($row as $key => $value) {
+			$player->$key = $value;
+		}
+		$playerarr[] = $player;
+                }
+
+		return $playerarr;
+	}
 }
 
 
