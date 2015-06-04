@@ -51,14 +51,14 @@ class Player {
         $rows = $sql->fetchAll(PDO::FETCH_ASSOC);	
 	$playerarr = array();
 	foreach($rows as $row) {
-               $player = new Player();
+		$player = new Player();
 		foreach ($row as $key => $value) {
 			$player->$key = $value;
 		}
 		$playerarr[] = $player;
-                }
+	}
 
-		return $playerarr;
+	return $playerarr;
 	}
 }
 
