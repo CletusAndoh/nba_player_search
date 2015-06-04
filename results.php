@@ -25,6 +25,7 @@ catch(PDOException $e) {
         }
 echo "<h1>Click a player or team to get more info!</h1> <br>";
 echo "Players Found" . '<br>';
+
 foreach($rows as $row) {
                $player = new Player();
                         foreach ($row as $key => $value) {

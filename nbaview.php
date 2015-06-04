@@ -1,5 +1,6 @@
 <?php
+
 class NBAView {
 
-$tpl = "nba.php";
+//$tpl = "nba.php";
 }
