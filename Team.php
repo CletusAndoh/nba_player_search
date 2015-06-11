@@ -1,4 +1,5 @@
 <?php
+//Team Model
 require_once 'Db.php';
 class Team {
         protected $name;
@@ -55,8 +56,22 @@ class Team {
 		}
 	return $teamarr;
 	}
+	
 
+
+	public static function findplayer($name) {
+		$con = new Db();
+		$dbh = $con->getPDO();
+		$stmt = $dbh->prepare("select * from teams inner join teams_stats on teams.id = teams_stats.id where name=?");
+		$stmt->execute(array($name));
+		$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		foreach($rows as $row){
+			$team = new Team();
+			foreach ($row as $key => $value) {
+				$team->$key = $value;
+
+			}
+		}
+		return $team;
+	}
 }
-
-
-
