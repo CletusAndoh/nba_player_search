@@ -5,10 +5,11 @@ include 'Db.php';
 include 'Team.php';
 ?>
 	<body>
-		<h1>
+		<center><h1>
 			<?php
 			echo "Statistics for " .$_GET['term'];
-			?></h1>
+			?>
+		</h1></center>
 	<?php
                 try {
 			$con = new Db();

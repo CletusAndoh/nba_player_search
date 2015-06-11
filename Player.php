@@ -1,4 +1,5 @@
 <?php
+//MODEL
 require_once 'Db.php';
 class Player {
 	protected $firstname;
@@ -42,10 +43,9 @@ class Player {
                 return $this->$key;
         }
 
-	public static function findAll() {
+	public static function findAll($term) {
 	$con = new Db();
 	$dbh =  $con->getPDO2();
-	$term = $_GET['term'];
 	$sql = $dbh->prepare("select name,id from players where name like '%$term%'");
         $sql->execute(array($term));
         $rows = $sql->fetchAll(PDO::FETCH_ASSOC);	
@@ -59,6 +59,24 @@ class Player {
 	}
 
 	return $playerarr;
+	}
+
+	public static function findplayer($name) {
+	 	$con = new Db();
+                $dbh = $con->getPDO2();
+                $stmt = $dbh->prepare("select * from players inner join players_stats on players.id = players_stats.id where name=?");
+                $stmt->execute(array($name));
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($stmt->rowCount() > 0) {
+                        echo $stmt->rowCount() . " Row found. Player Found ";
+                }
+                foreach($rows as $row) {
+                        $player = new Player();
+                        foreach ($row as $key => $value) {
+                                $player->$key = $value;
+                        }
+                }
+		return $player;
 	}
 }
 

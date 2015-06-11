@@ -1,20 +1,35 @@
 h1, h2{
 	color:blue;
-	text-align:center;
 }
 td{
 	text-align:center;
 }
 table {
-	background:lightgray;
+	background:#E2725B;
 	width:100%;
 	border-style:double;
+	font-size:19px;
 }
 thead{
 	color:white;
 	height:"10px";
 }
+a{
+text-decoration:none;
+}
 a:hover{
 text-decoration:underline;
 
 }
+body{
+background-color:#FDF3E7;
+}
+div.results {
+width:600px;
+margin:0 auto;
+}
+div.results div{
+width:300px;
+float:left;
+}
+

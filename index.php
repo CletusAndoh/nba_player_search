@@ -1,3 +1,5 @@
+<html>
+</html>
 <?php
 
 require_once 'Player.php'; 
@@ -9,7 +11,7 @@ $term = $_GET['term'];
 $view = new NBAView();
 
 if($term) {
-	$players = Player::findAll();
+	$players = Player::findAll($term);
 
 	$teams = Team::findAll($term);
 

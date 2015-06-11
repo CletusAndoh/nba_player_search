@@ -1,63 +1,103 @@
-<html>
 <?php
-include 'index.php';
-include 'Db.php';
-include 'Player.php';
-include 'Team.php';
-try {
-
-        $name = $_GET['term'];
-        $con = new Db();
-        $dbh =  $con->getPDO2();
-	$dbh2 = $con->getPDO();	
-
-        $sql = $dbh->prepare("select name,id from players where name like '%$name%'");
-        $sql->execute(array($name));
-        $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-	$sql2 = $dbh2->prepare("select name from teams where name like '%$name%'");
-        $sql2->execute(array($name));
-        $rows2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
-}
-
-catch(PDOException $e) {
-        echo $e->getMessage();
-        }
-echo "<h1>Click a player or team to get more info!</h1> <br>";
-echo "Players Found" . '<br>';
-
-foreach($rows as $row) {
-               $player = new Player();
-                        foreach ($row as $key => $value) {
-                                $player->$key = $value;
-                                $results = $player->name;
-                                $resultsid = $player->id;
-                        }
-
-                $link = "playersearch.php?term=$results";
-                echo "<a href='$link'>$results $resultsid <br></a>";
-		echo '<br>';
-                }
-
-echo '<br>' .  "Teams Found" . '<br>';
-foreach($rows2 as $row2) {
-               $team = new Team();
-                        foreach ($row2 as $key2 => $value2) {
-                                $team->$key2 = $value2;
-                                $results2 = $team->name;
-
-
-                        }
-
-                $link2 = "teamsearch.php?term=$results2";
-                echo "<a href='$link2'>$results2<br></a>";
-		echo '<br>';
-                }
-
-
+require_once 'PlayerView.php';
+require_once 'playersearch.php';
+require_once 'presultsmodel.php';
 ?>
 
-<ul>
-</ul>
+<html>
+	<body>
+		<h1>
+                <?php echo "Statistics for " .$_GET["term"];?>
+                </h1>
+		
+		<div>
+		<center>
+		<table name="table" border=1px>
+			<thead>
+				<tr>
+					<th>Season</th>
+					<th>Position</th>
+					<th>Age</th>
+					<th>Team</th>
+					<th>Games</th>
+					<th>Minutes</th>
+					<th>ORB%</th>
+					<th>DRB%</th>
+					<th>TRB%</th>
+					<th>AST%</th>
+					<th>STL%</th>
+					<th>BLK%</th>
+					<th>TOV%</th>
+				</tr>
+			</thead>
+				<tr>
+					<td>2014-2015</td>
+					<td>
+						<?php
+						print($player->position);
+						?>
+
+					</td>
+					<td>
+						<?php
+						print($player->age);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->team);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->games);
+						?>
+					</td>
+					<td>
+						<?php	
+						print($player->minutes);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->offensive_rbpct);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->defensive_rbpct);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->total_rbpct);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->assistpct);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->stealpct);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->blockpct);
+						?>
+					</td>
+					<td>
+						<?php
+						print($player->turnoverpct);
+						?>
+					</td>
+				</tr>
+
+	</center>
+	</div>
+
+	</body>
 
 </html>
