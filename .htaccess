@@ -1,0 +1,3 @@
+ReWriteEngine On
+RewriteRule ^player/([a-zA-Z0-9-]+)/?$ playersearch.php?term=$1 [NC]
+#Redirect "/playersearch.php" "http://www.cletusnbasearch.com/player/"

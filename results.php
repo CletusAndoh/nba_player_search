@@ -1,7 +1,7 @@
 <?php
 require_once 'PlayerView.php';
 require_once 'playersearch.php';
-require_once 'presultsmodel.php';
+require_once 'Player.php';
 ?>
 
 <html>
